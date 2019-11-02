@@ -189,6 +189,59 @@
                 <!-- TODO: create a custom validation rule -->
 
             </group>
+
+            <group id="select_fields_group" showInDefault="1" showInStore="1" showInWebsite="1" translate="label comment"
+            sortOrder="2">
+                <label>Select Field Examples</label>
+                <comment>It is also possible to add comments like this to the configuration groups, like this one!</comment>
+
+                <!--
+                    This is a simple Select Field with YES/NO options. The options are loaded from
+                    the class in the <source_model> node.
+
+                    If you just want to load a simple YES/NO option, you can always use the class
+                    Magento\Config\Model\Config\Source\Yesno
+
+                    This field has the same attributes as the input field.
+
+                -->
+
+                <field id="select_field_yes_no" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>YES/NO Field</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>This field uses a Source Model to display Yes/No options</comment>
+
+                </field>
+
+                <!--
+
+                    It is also possible to create your own Source Model and add custom options to a
+                    select field.
+
+                    Note: This field also has HTML inside of the comment
+
+                -->
+
+                <field id="select_field_custom_options" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Custom Options</label>
+                    <source_model>Certification\ArchitectureSystemConfiguration\Model\Config\Source\CustomOptions</source_model>
+                    <comment><![CDATA[This is a comment with HTML inside.</br> It is even possible to add <a target="_blank"
+                    href="https://www.andresa.dev/" target="_blank">links inside of a comment</a>.]]></comment>
+                </field>
+
+                <!--
+
+                    This select field won't allow the user to select the first option
+
+                -->
+
+                <field id="select_field_zero_or_greater" translate="label comment" type="select" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Select a value >=0</label>
+                    <source_model>Certification\ArchitectureSystemConfiguration\Model\Config\Source\CustomOptions</source_model>
+                    <comment>Select a value >=0 </comment>
+                    <validate>required-option validate-zero-or-greater</validate>
+                </field>
+            </group>
         </section>
     </system>
 </config>
