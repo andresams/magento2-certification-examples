@@ -1,0 +1,194 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * System Configuration
+ *
+ * @category   Certification
+ * @package    Certification_ArchitectureSystemConfiguration
+ * @author     Andresa Martins <contact@andresa.dev>
+ * @copyright  Copyright (c) 2019 (https://www.andresa.dev)
+ * @license    http://opensource.org/licenses/BSD-2-Clause Simplified BSD License
+ */
+ -->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+
+        <!--
+            Creating a new tab. This tab will be displayed on Stores > Configuration.
+            The tab won't show up unless a Section with fields is associated
+            with it.
+        -->
+
+        <tab id="certification" translate="label" sortOrder="1">
+            <label>Certification</label>
+        </tab>
+
+        <!--
+            This is a new section that will be displayed under the Certification tab.
+            A section won't be displayed unless there is at least one Group inside of it.
+        -->
+
+        <section id="certification" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Section One</label><!-- Section Label will be displayed under the TAB label -->
+            <tab>certification</tab><!-- This is the tab ID -->
+            <resource>Magento_Backend::advanced</resource><!-- Permission necessary to display this section -->
+
+            <!--
+
+                A Group won't be displayed unless it has at least one field inside of it.
+                So in order to display one tab with contents, it is necessary to have at least
+                a tab, a section, a group and one field inside of it.
+
+            -->
+
+            <group id="my_test_section_group" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Title inside of the section</label>
+
+                <!--
+
+                    Added this field just to make sure the tab "Certification" is displayed
+                    in the system configuration.
+
+                    Note: if you remove this field, the tab won't be displayed in the Admin.
+                    Try removing the field, then run bin/magento cache:clear and go to the
+                    System Configuration page. You will notice that the "Certification" tab
+                    disappears.
+
+                -->
+
+                <field id="my_first_field" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Test Field</label>
+                </field>
+
+
+            </group>
+        </section>
+
+        <!--
+
+            Also note that Sections, Groups and Fields have 3 different Configuration Scopes:
+
+             — Default/Global: showInDefault
+             — Website: showInWebsite
+             — Store: showInStore
+
+             ATTENTION: Magento 2 doesn't have a showInStoreView attribute. All fields with the attribute
+             showInStore="1" will be displayed in the Store View scope.
+
+             Read more about scopes at https://docs.magento.com/m2/ce/user_guide/configuration/scope.html
+
+         -->
+
+        <!--
+
+            Section containing examples of configuration fields
+
+        -->
+
+        <section id="section_input_fields" translate="label" type="text" sortOrder="2" showInDefault="1" showInWebsite="1" showInStore="1">
+        <label>Input Examples</label><!-- Section Label will be displayed under the TAB label -->
+        <tab>certification</tab><!-- This is the tab ID -->
+        <resource>Magento_Backend::advanced</resource><!-- Permission necessary to display this section -->
+
+            <group id="my_test_section_group" translate="label" type="text" sortOrder="1" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Input Field Examples (with validation)</label>
+
+                <!--
+                    This is a simple input field without validation.
+
+                    translate: Indicates which nodes should be added to the translation file
+                    type: Field type to be displayed
+                    sortOrder: The order it will be displayed under the group
+                    showInDefault: Show this field in the default (global) configuration scope? (1=yes, 0=no[default])
+                    showInWebsite: Show this field in the website configuration scope? (1=yes, 0=no[default])
+                    showInStore: Show this field in the Store View configuration scope? (1=yes, 0=no[default])
+
+                -->
+
+                <field id="simple_input_field" translate="label comment" type="text" sortOrder="1"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1"  >
+                    <label>Simple, without validation</label>
+                    <comment>A comment after the field</comment>
+                </field>
+
+                <!--
+
+                    Input with Email Validation
+
+                    If the user tries to save the configuration without entering a valid e-mail
+                    address, Magento will display the following error message, preventing the form
+                    from being submitted:
+
+                    "Please enter a valid email address (Ex: johndoe@domain.com)."
+
+                    Note: the form can still be submitted if this field is empty.
+
+
+                -->
+
+                <field id="input_email_validation" translate="label comment" type="text" sortOrder="2"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>validate-email</validate>
+                    <label>E-mail Validation</label>
+                    <comment>This field won't be validated unless you enter an e-mail address on it</comment>
+                </field>
+
+                <!--
+                    Required Entry Input
+
+                    — The form won't be submitted if this field is empty.
+                    — The user can enter any value in this field.
+                    — If he tries to submit the form when this field is empty, Magento will display
+                    the following error message:
+
+                    "This is a required field."
+
+                -->
+
+                <field id="required_input_validation" translate="label comment" type="text" sortOrder="3"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <validate>required-entry</validate>
+                    <label>Required Field</label>
+                    <comment>The form won't be submitted if this field is empty</comment>
+                </field>
+
+                <!--
+
+                    Require a number within 2 and 100
+                     — A valid number must be entered
+                     — The digits will be validated
+                     — The digit range to be validated goes from 2 to 100
+
+                -->
+
+                <field id="digits_validation" translate="label comment" type="text" sortOrder="4"
+                       showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Numeric and Digits validation</label>
+                    <validate>validate-digits validate-digits-range digits-range-2-100</validate>
+                    <comment>A number must be entered and it must be between 2 to 100.</comment>
+                    <more_url>http://www.terra.com.br/</more_url>
+                    <hint>Write a hint here to help your users</hint>
+                </field>
+
+                <!--
+                    There are many other values that can be used as validation rules.
+                    By default, Magento comes with 2 rule sets:
+
+                    1 — jQuery Validate Rules:
+
+                    https://github.com/magento/magento2/blob/2.3.3/lib/web/jquery/jquery.validate.js#L1004:L1991
+
+
+                    2 — Magento Validation Rules:
+                     https://github.com/magento/magento2/blob/2.3.3/lib/web/mage/validation.js#L226:L1697
+
+                     It is also possible to create your own validation rule with jQuery.
+                -->
+
+                <!-- TODO: create a custom validation rule -->
+
+            </group>
+        </section>
+    </system>
+</config>
