@@ -1,1 +1,3 @@
 ./architecture/system-configuration app/code/Certification/ArchitectureSystemConfiguration
+./catalog-customization/products app/code/Certification/CatalogCustomizationProducts
+./customer-management/my-account app/code/Certification/CustomerManagementMyAccount
