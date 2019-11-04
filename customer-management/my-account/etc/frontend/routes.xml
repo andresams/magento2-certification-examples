@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Define module routes
+ *
+ * @category   Certification
+ * @package    Certification_CustomerManagementMyAccount
+ * @author     Andresa Martins <contact@andresa.dev>
+ * @license    http://opensource.org/licenses/BSD-2-Clause Simplified BSD License
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+
+    <!-- The route "standard" is the route used by Magento in the frontend-->
+    <router id="standard">
+
+        <!--
+
+            Route ID is used internally by Magento to look for XML layout files associated with this route.
+            For example, the layout file "customer_myaccount_customer_index.xml" defines the layout to be displayed
+            when the controller Certification\CustomerManagementMyAccount\Controller\Customer\Index is accessed
+            in the browser.
+
+            frontName is the name used in the frontend to access this route. For example, if we want to access the controller
+            Certification\CustomerManagementMyAccount\Controller\Customer\Index, defined in this module, we will use
+            the address http://your-local-magento.test/custom-myaccount/customer/index.
+
+        -->
+
+        <route id="custom_myaccount" frontName="custom-myaccount">
+            <module name="Certification_CustomerManagementMyAccount"/>
+        </route>
+
+
+    </router>
+</config>

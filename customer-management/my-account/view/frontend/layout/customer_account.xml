@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Adds a new link to the Customer Dashboard menu
+ *
+ * @category   Certification
+ * @package    Certification_CustomerManagementMyAccount
+ * @author     Andresa Martins <contact@andresa.dev>
+ * @license    http://opensource.org/licenses/BSD-2-Clause Simplified BSD License
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+
+        <!--
+            "referenceBlock" means that we will be updating the block "customer_account_navigation", originally
+            defined on customer_account.xml, inside of the Customer module.
+        -->
+        <referenceBlock name="customer_account_navigation">
+
+            <!--
+                We are adding to the customer_account_navigation block a new instance of
+                Magento\Customer\Block\Account\SortLinkInterface. This interface has a preference set at
+                module-customer/etc/di.xml, so every time it is instantiated, we actually get an instance
+                of Magento\Customer\Block\Account\SortLink. This is the block used to create each one of the
+                links in the Customer Dashboard Menu.
+
+                By instantiating the SortLink block and setting its arguments (path, label and sortOrder),
+                we are creating a new menu link. Since it is inside of "customer_account_navigation" block,
+                this item will be added to that block.
+
+            -->
+            <block class="Magento\Customer\Block\Account\SortLinkInterface" name="customer-account-navigation-example-link">
+                <arguments>
+                    <argument name="path" xsi:type="string">custom-myaccount/customer/index</argument>
+                    <argument name="label" xsi:type="string" translate="true">Example Custom Link</argument>
+                    <argument name="sortOrder" xsi:type="number">9999999</argument>
+                </arguments>
+            </block>
+
+        </referenceBlock>
+    </body>
+</page>

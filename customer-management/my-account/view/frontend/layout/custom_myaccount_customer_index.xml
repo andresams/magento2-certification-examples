@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Custom My Account Example Page Layout
+ *
+ * @category   Certification
+ * @package    Certification_CustomerManagementMyAccount
+ * @author     Andresa Martins <contact@andresa.dev>
+ * @license    http://opensource.org/licenses/BSD-2-Clause Simplified BSD License
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+
+    <!--
+       By setting an update handle, we are telling Magento that all updates described on this file will
+       take into account any directives contained within the customer_account.xml file. If this instruction
+       is removed, Magento will then use the default layout handle and this page will be displayed without
+       the My account menu. Try removing this instruction and clear the cache to see how it looks like.
+    -->
+    <update handle="customer_account"/>
+
+    <body>
+        <!--
+            Set the Page Title. This directive takes priority over the title defined in the controller file.
+            Try removing this node, clear the cache and the page title will be changed to the one defined
+            in the controller.
+        -->
+        <referenceBlock name="page.main.title">
+            <action method="setPageTitle">
+                <argument translate="true" name="title" xsi:type="string">Example Custom Customer Dashboard Page (title set in the LAYOUT XML file)</argument>
+            </action>
+        </referenceBlock>
+
+
+        <!--
+            Adds a new block to the Content container.
+        -->
+        <referenceContainer name="content">
+            <block class="Certification\CustomerManagementMyAccount\Block\Customer\Example" name="customer_dashboard_example" template="Certification_CustomerManagementMyAccount::customer/example.phtml" cacheable="false">
+            </block>
+        </referenceContainer>
+
+
+    </body>
+</page>
